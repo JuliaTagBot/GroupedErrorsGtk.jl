@@ -1,5 +1,8 @@
 module GroupedErrorsGtk
 
-# package code goes here
+using Gtk
 
-end # module
+include("types.jl")
+include("buildwindow.jl")
+
+end
