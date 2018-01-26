@@ -2,7 +2,7 @@ module GroupedErrorsGtk
 
 using Gtk, JuliaDB, GroupedErrors, StatPlots
 
-gr(size = (210, 140), grid = false)
+gr()
 
 include("types.jl")
 include("buildwindow.jl")
