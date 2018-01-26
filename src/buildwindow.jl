@@ -1,8 +1,11 @@
-function buildwindow(df; nbox = 5)
-    categoricals = filter(key -> length(union(df[key])) < nbox, names(df))
-    cols = [ChecklistColumn(key, sort(union(df[key]))) for key in categoricals]
+buildwindow(df::AbstractString; nbox = 5) = buildwindow(loadtable(df); nbox = nbox)
+
+function buildwindow(df::JuliaDB.AbstractIndexedTable; nbox = 5)
+    unique_iter = ((key, union(column(df, key))) for key in colnames(df))
+    cols = [ChecklistColumn(key, sort(val)) for (key, val) in unique_iter
+        if length(val) < nbox]
     grid = GtkGrid()
-    
+
     for (ind, col) in enumerate(cols)
       grid[ind,1] = col.button
       for (i, item) in enumerate(col.items)
@@ -17,4 +20,3 @@ function buildwindow(df; nbox = 5)
     push!(win, grid)
     showall(win)
 end
-    

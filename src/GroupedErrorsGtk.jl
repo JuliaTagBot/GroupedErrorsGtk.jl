@@ -1,6 +1,6 @@
 module GroupedErrorsGtk
 
-using Gtk
+using Gtk, JuliaDB
 
 include("types.jl")
 include("buildwindow.jl")
