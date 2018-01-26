@@ -34,3 +34,5 @@ function PlotOptions(name, values)
     end
     PlotOptions(name, cb, items)
 end
+
+getoption(p::PlotOptions) = p.items[getproperty(p.button, "active", Int)+1] |> Symbol
